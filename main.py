@@ -1,3 +1,4 @@
+# Texto caballero
 def on_overlap_tile(sprite, location):
     game.show_long_text("Nivel FÁCIL", DialogLayout.BOTTOM)
     tiles.set_tile_at(location, assets.tile("""
@@ -9,12 +10,14 @@ scene.on_overlap_tile(SpriteKind.player,
     """),
     on_overlap_tile)
 
+
 def on_overlap_tile2(sprite3, location3):
     niveles()
 scene.on_overlap_tile(SpriteKind.player,
     sprites.builtin.forest_tiles10,
     on_overlap_tile2)
 
+# Texto Murcielago
 def on_overlap_tile3(sprite6, location6):
     game.show_long_text("Nivel DIFÍCIL, se necesita nivel MEDIO, si lo tienes, ADELANTE!!",
         DialogLayout.BOTTOM)
@@ -179,6 +182,7 @@ def menu():
     controller.move_sprite(jugador, 75, 75)
     tiles.place_on_tile(jugador, tiles.get_tile_location(16, 12))
 
+# Animación bajar
 def on_down_pressed():
     animation.run_image_animation(jugador,
         [img("""
@@ -261,6 +265,7 @@ def on_on_score():
     game.game_over(True)
 info.on_score(4, on_on_score)
 
+ # Texto Fantasma
 def on_overlap_tile4(sprite7, location7):
     game.show_long_text("Nivel EXTREMO, se necesita nivel DIFÍCIL, si lo tienes, ADELANTE!!",
         DialogLayout.BOTTOM)
@@ -273,6 +278,7 @@ scene.on_overlap_tile(SpriteKind.player,
     """),
     on_overlap_tile4)
 
+# Animación Derecha
 def on_right_pressed():
     animation.run_image_animation(jugador,
         [img("""
@@ -351,6 +357,7 @@ def on_right_pressed():
         True)
 controller.right.on_event(ControllerButtonEvent.PRESSED, on_right_pressed)
 
+#Animación izquierda
 def on_left_pressed():
     animation.run_image_animation(jugador,
         [img("""
@@ -429,6 +436,7 @@ def on_left_pressed():
         True)
 controller.left.on_event(ControllerButtonEvent.PRESSED, on_left_pressed)
 
+# Animación salto
 def on_a_pressed():
     if jugador.is_hitting_tile(CollisionDirection.BOTTOM):
         jugador.vy = -350
@@ -444,6 +452,7 @@ def on_countdown_end():
     perder_nivel()
 info.on_countdown_end(on_countdown_end)
 
+# Texto cofre
 def on_overlap_tile6(sprite22, location22):
     game.show_long_text("Busca y encuentra todas las bolas de dragón",
         DialogLayout.BOTTOM)
@@ -454,6 +463,12 @@ scene.on_overlap_tile(SpriteKind.player,
     sprites.dungeon.chest_closed,
     on_overlap_tile6)
 
+def on_overlap_tile7(sprite52, location52):
+    niveles()
+scene.on_overlap_tile(SpriteKind.player,
+    sprites.dungeon.purple_outer_north2,
+    on_overlap_tile7)
+# Animación subir
 def on_up_pressed():
     animation.run_image_animation(jugador,
         [img("""
@@ -532,16 +547,17 @@ def on_up_pressed():
         True)
 controller.up.on_event(ControllerButtonEvent.PRESSED, on_up_pressed)
 
-def on_overlap_tile7(sprite32, location32):
+def on_overlap_tile8(sprite32, location32):
     superar_nivel()
 scene.on_overlap_tile(SpriteKind.player,
     sprites.dungeon.collectible_red_crystal,
-    on_overlap_tile7)
+    on_overlap_tile8)
 
 def on_life_zero():
     game.game_over(False)
 info.on_life_zero(on_life_zero)
 
+# Perder en un nivel
 def perder_nivel():
     info.change_life_by(-1)
     scene.set_background_image(img("""
@@ -691,6 +707,8 @@ def perder_nivel():
         """))
         tiles.place_on_tile(jugador, tiles.get_tile_location(5, 9))
     restablecer_gravedad()
+
+# Superar un nivel
 def superar_nivel():
     info.stop_countdown()
     info.change_score_by(1)
@@ -837,7 +855,8 @@ def superar_nivel():
                 ................................................................................................................................................................
     """))
 
-def on_overlap_tile8(sprite2, location2):
+# Texto cangrejo
+def on_overlap_tile9(sprite2, location2):
     game.show_long_text("Nivel MEDIO, se necesita nivel FÁCIL, si lo tienes, ADELANTE!!",
         DialogLayout.BOTTOM)
     tiles.set_tile_at(location2, assets.tile("""
@@ -847,14 +866,15 @@ scene.on_overlap_tile(SpriteKind.player,
     assets.tile("""
         cangrejo
     """),
-    on_overlap_tile8)
+    on_overlap_tile9)
 
-def on_overlap_tile9(sprite5, location5):
+def on_overlap_tile10(sprite5, location5):
     niveles()
 scene.on_overlap_tile(SpriteKind.player,
     sprites.dungeon.hazard_lava1,
-    on_overlap_tile9)
+    on_overlap_tile10)
 
+# Función al entrar a jugar un nivel
 def niveles():
     if info.score() == 0:
         scene.set_background_image(assets.image("""
@@ -894,13 +914,6 @@ def niveles():
 def restablecer_gravedad():
     controller.move_sprite(jugador, 75, 75)
     jugador.ay = 0
-
-def on_overlap_tile10(sprite52, location52):
-    niveles()
-scene.on_overlap_tile(SpriteKind.player,
-    sprites.dungeon.purple_outer_north2,
-    on_overlap_tile10)
-
 jugador: Sprite = None
 scene.set_background_image(img("""
     9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
@@ -1024,6 +1037,8 @@ scene.set_background_image(img("""
         9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
         9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
 """))
+
+# Bienvenida
 game.show_long_text("¡Bienvenido/da a Crono Arcade!", DialogLayout.TOP)
 game.show_long_text("En este mundo te esperan 4 niveles por explorar llenos de desafios! Adelante!",
     DialogLayout.BOTTOM)
