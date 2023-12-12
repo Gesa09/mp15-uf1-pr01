@@ -625,6 +625,10 @@ function perder_nivel () {
         game.showLongText("Nivel DIFÍCIL no superado!!", DialogLayout.Bottom)
         tiles.setCurrentTilemap(tilemap`nivel6`)
         tiles.placeOnTile(jugador, tiles.getTileLocation(25, 22))
+    } else if (info.score() == 3) {
+        game.showLongText("Nivel EXTREMO no superado!!", DialogLayout.Bottom)
+        tiles.setCurrentTilemap(tilemap`nivel7`)
+        tiles.placeOnTile(jugador, tiles.getTileLocation(5, 9))
     } else {
     	
     }
@@ -777,6 +781,9 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`cangrejo`, function (sprite2,
     game.showLongText("Nivel MEDIO, se necesita nivel FÁCIL, si lo tienes, ADELANTE!!", DialogLayout.Bottom)
     tiles.setTileAt(location2, assets.tile`cangrejo escondido`)
 })
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava1, function (sprite5, location5) {
+    niveles()
+})
 function niveles () {
     if (info.score() == 0) {
         scene.setBackgroundImage(assets.image`myImage`)
@@ -790,8 +797,9 @@ function niveles () {
         scene.setBackgroundImage(assets.image`moon`)
         tiles.setCurrentTilemap(tilemap`nivel4`)
         tiles.placeOnTile(jugador, tiles.getTileLocation(7, 78))
-    } else {
-    	
+    } else if (info.score() == 3) {
+        scene.setBackgroundImage(assets.image`fondo4`)
+        tiles.setCurrentTilemap(tilemap`level0`)
     }
     controller.moveSprite(jugador, 75, 0)
     jugador.ay = 800

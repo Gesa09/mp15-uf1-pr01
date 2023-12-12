@@ -684,6 +684,12 @@ def perder_nivel():
             nivel6
         """))
         tiles.place_on_tile(jugador, tiles.get_tile_location(25, 22))
+    elif info.score() == 3:
+        game.show_long_text("Nivel EXTREMO no superado!!", DialogLayout.BOTTOM)
+        tiles.set_current_tilemap(tilemap("""
+            nivel7
+        """))
+        tiles.place_on_tile(jugador, tiles.get_tile_location(5, 9))
     else:
         pass
     restablecer_gravedad()
@@ -847,13 +853,19 @@ scene.on_overlap_tile(SpriteKind.player,
     """),
     on_overlap_tile8)
 
+def on_overlap_tile9(sprite5, location5):
+    niveles()
+scene.on_overlap_tile(SpriteKind.player,
+    sprites.dungeon.hazard_lava1,
+    on_overlap_tile9)
+
 def niveles():
     if info.score() == 0:
         scene.set_background_image(assets.image("""
             myImage
         """))
         tiles.set_current_tilemap(tilemap("""
-            nivel0
+            level0
         """))
         tiles.place_on_tile(jugador, tiles.get_tile_location(7, 78))
     elif info.score() == 1:
@@ -872,6 +884,14 @@ def niveles():
             nivel4
         """))
         tiles.place_on_tile(jugador, tiles.get_tile_location(7, 78))
+    elif info.score() == 3:
+        scene.set_background_image(assets.image("""
+            fondo4
+        """))
+        tiles.set_current_tilemap(tilemap("""
+            level0
+        """))
+        tiles.place_on_tile(jugador, tiles.get_tile_location(7, 78))
     else:
         pass
     controller.move_sprite(jugador, 75, 0)
@@ -881,11 +901,11 @@ def restablecer_gravedad():
     controller.move_sprite(jugador, 75, 75)
     jugador.ay = 0
 
-def on_overlap_tile9(sprite5, location5):
+def on_overlap_tile10(sprite52, location52):
     niveles()
 scene.on_overlap_tile(SpriteKind.player,
     sprites.dungeon.purple_outer_north2,
-    on_overlap_tile9)
+    on_overlap_tile10)
 
 jugador: Sprite = None
 scene.set_background_image(img("""
